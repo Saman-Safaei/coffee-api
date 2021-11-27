@@ -53,6 +53,7 @@ class VIndex(MethodView):
         product = models.MProducts(name, url, description, price, off_price, discount)
         try:
             db.session.add(product)
+            db.session.commit()
             massage = "The Product is saved"
             code = 1
         except:
