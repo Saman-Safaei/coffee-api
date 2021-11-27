@@ -47,7 +47,7 @@ class VIndex(MethodView):
         price = info_data["price"]
         discount = info_data["discount"]
         off_price = info_data["off_price"]
-        url = url_for("uploads.uploaded", filename=filename)
+        url = "https://api-coffee-flask.herokuapp.com/uploads/" + filename
 
         if name is None or description is None or price is None or discount is None or off_price is None:
             return jsonify({"massage": "Info is not complete !", "code": 4})
