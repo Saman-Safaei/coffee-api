@@ -1,5 +1,6 @@
 import datetime
 import os
+import json
 from coffee.src.core.extensions import db
 from flask.views import MethodView
 from . import models
@@ -34,7 +35,7 @@ class VIndex(MethodView):
                 "off_price": single_data.off_price
             }
 
-        return jsonify(response_dict)
+        return jsonify(json.dumps(response_dict))
 
     def post(self):
         info_data = request.form
@@ -62,3 +63,14 @@ class VIndex(MethodView):
             code = 4
 
         return jsonify(dict(massage=massage, code=code))
+
+    def delete(self):
+        item_id = request.get_json()["item_id"]
+        product = models.MProducts.query.filter_by(_id=item_id).first()
+        if product is not None:
+            product.delete()
+            db.session.commit()
+            return jsonify(dict(massage="Item Deleted", code=1))
+        else:
+            return jsonify(dict(massage="This item is not exists", code=4))
+
