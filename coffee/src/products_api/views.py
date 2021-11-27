@@ -35,7 +35,7 @@ class VIndex(MethodView):
                 "off_price": single_data.off_price
             }
 
-        return jsonify(json.dumps(response_dict))
+        return json.dumps(response_dict)
 
     def post(self):
         info_data = request.form
