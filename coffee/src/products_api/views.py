@@ -52,7 +52,7 @@ class VIndex(MethodView):
         if name is None or description is None or price is None or discount is None or off_price is None:
             return jsonify({"massage": "Info is not complete !", "code": 4})
 
-        product = models.MProducts(name, url, description, price, off_price, discount)
+        product = models.MProducts(name=name, image_url=url, description=description, price=price, off_price=off_price, discount=discount)
         try:
             db.session.add(product)
             db.session.commit()
