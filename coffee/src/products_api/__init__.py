@@ -39,7 +39,8 @@ class Products(Resource):
                 "off_price": single_data.off_price
             })
         response = make_response(dict(data=response_list))
-        response.content_type = "application/json; charset=UTF-8"
+        response.content_type = "application/json; charset=utf-8"
+        response.charset = "UTF-8"
         return response
 
     def post(self):
