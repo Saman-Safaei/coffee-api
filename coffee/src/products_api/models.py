@@ -6,9 +6,9 @@ class MProducts(db.Model):
     name = db.Column(db.VARCHAR(80), nullable=False)
     image_url = db.Column(db.VARCHAR(), nullable=False)
     description = db.Column(db.TEXT(), nullable=False)
-    price = db.Column(db.FLOAT(), nullable=False)
-    discount = db.Column(db.BOOLEAN(), nullable=False, default=False)
-    off_price = db.Column(db.FLOAT(), nullable=False, default=0)
+    price = db.Column(db.INTEGER(), nullable=False)
+    discount = db.Column(db.INTEGER(), nullable=False, default=False)
+    off_price = db.Column(db.INTEGER(), nullable=False, default=0)
 
     def __init__(self, name, url, description, price, off_price, discount):
         self.name = name

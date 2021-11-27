@@ -9,6 +9,7 @@ from flask import request, jsonify, current_app, url_for
 class VIndex(MethodView):
 
     def get(self):
+        db.create_all()
         product_id = request.args.get("id", None)
         response_dict = dict()
         if not product_id:
@@ -36,7 +37,6 @@ class VIndex(MethodView):
         return jsonify(response_dict)
 
     def post(self):
-        massage = None
         info_data = request.form
         image_file = request.files.get("image", None)
         filename = str(datetime.datetime.now()) + " - " + image_file.filename
@@ -56,8 +56,8 @@ class VIndex(MethodView):
             db.session.commit()
             massage = "The Product is saved"
             code = 1
-        except:
-            massage = "The Product is not saved"
+        except Exception as w:
+            massage = "The Product is not saved :" + str(w)
             code = 4
 
         return jsonify(dict(massage=massage, code=code))
