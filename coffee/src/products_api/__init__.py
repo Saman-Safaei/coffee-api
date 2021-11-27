@@ -47,13 +47,12 @@ class Products(Resource):
     def post(self):
         info_data = request.form
         image_file = request.files.get("image", None)
-        filename = str(datetime.datetime.now()) + "-" + image_file.filename
+        filename = str(datetime.datetime.now().year) + str(datetime.datetime.now().month) + str(datetime.datetime.now().day) + str(datetime.datetime.now().hour) + str(datetime.datetime.now().minute) + "-" + image_file.filename
         name = info_data["name"]
         description = info_data["description"]
         price = info_data["price"]
         discount = info_data["discount"]
         off_price = info_data["off_price"]
-        filename.replace(" ", "")
         url = "https://api-coffee-flask.herokuapp.com/uploads/" + filename
 
         if name is None or description is None or price is None or discount is None or off_price is None:
