@@ -2,6 +2,8 @@ from coffee.src.core.extensions import db
 
 
 class MProducts(db.Model):
+    __tablename__ = "products"
+
     _id = db.Column(db.INTEGER(), primary_key=True, autoincrement=True)
     name = db.Column(db.VARCHAR(80), nullable=False)
     image_url = db.Column(db.VARCHAR(), nullable=False)
