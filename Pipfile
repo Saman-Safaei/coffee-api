@@ -8,6 +8,7 @@ flask = "*"
 flask-sqlalchemy = "*"
 python-dotenv = "*"
 gunicorn = "*"
+flask-restful = "*"
 
 [dev-packages]
 
