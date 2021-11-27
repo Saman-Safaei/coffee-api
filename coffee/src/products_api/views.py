@@ -57,7 +57,7 @@ class VIndex(MethodView):
             db.session.add(product)
             db.session.commit()
             image_file.save(os.path.join(current_app.config["UPLOADS_DIR"], filename))
-            massage = "The Product is saved"
+            massage = "The Product is saved !"
             code = 1
         except Exception as w:
             massage = "The Product is not saved :" + str(w)
