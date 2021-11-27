@@ -1,9 +1,6 @@
 from coffee.src.core.extensions import db
-import sys
 
 
-reload(sys)
-sys.setdefaultencoding('utf-8')
 class MProducts(db.Model):
     _id = db.Column(db.INTEGER(), primary_key=True, autoincrement=True)
     name = db.Column(db.Unicode(collation='utf8_bin'), nullable=False)
