@@ -3,9 +3,9 @@ from coffee.src.core.extensions import db
 
 class MProducts(db.Model):
     _id = db.Column(db.INTEGER(), primary_key=True, autoincrement=True)
-    name = db.Column(db.TEXT(), nullable=False)
-    image_url = db.Column(db.TEXT(), nullable=False)
-    description = db.Column(db.TEXT(), nullable=False)
+    name = db.Column(db.String(), nullable=False)
+    image_url = db.Column(db.String(), nullable=False)
+    description = db.Column(db.String(), nullable=False)
     price = db.Column(db.INTEGER(), nullable=False)
     discount = db.Column(db.INTEGER(), nullable=False, default=False)
     off_price = db.Column(db.INTEGER(), nullable=False, default=0)
