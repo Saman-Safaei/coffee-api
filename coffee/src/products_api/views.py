@@ -11,30 +11,32 @@ class VIndex(MethodView):
     def get(self):
         db.create_all()
         product_id = request.args.get("id", None)
-        response_dict = dict()
+        response_list = list()
         if not product_id:
             all_data = models.MProducts.query.all()
             for data in all_data:
-                response_dict[data.get_id()] = {
+                response_list.append({
+                    "id": data.get_id(),
                     "name": data.name,
                     "image_url": data.image_url,
                     "description": data.description,
                     "price": data.price,
                     "discount": data.discount,
                     "off_price": data.off_price
-                }
+                })
         else:
             single_data = models.MProducts.query.filter_by(_id=product_id).first_or_404()
-            response_dict[single_data.get_id()] = {
+            response_list.append({
+                "id": single_data.get_id(),
                 "name": single_data.name,
                 "image_url": single_data.image_url,
                 "description": single_data.description,
                 "price": single_data.price,
                 "discount": single_data.discount,
                 "off_price": single_data.off_price
-            }
+            })
 
-        return jsonify(response_dict)
+        return jsonify(response_list)
 
     def post(self):
         info_data = request.form
