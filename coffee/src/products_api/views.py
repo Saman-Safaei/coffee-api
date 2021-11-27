@@ -1,4 +1,5 @@
 import datetime
+import json
 import os
 from coffee.src.core.extensions import db
 from flask.views import MethodView
@@ -36,7 +37,7 @@ class VIndex(MethodView):
                 "off_price": single_data.off_price
             })
 
-        return jsonify(response_list)
+        return json.dumps(response_list, ensure_ascii=False).encode("utf-8")
 
     def post(self):
         info_data = request.form
