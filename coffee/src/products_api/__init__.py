@@ -41,7 +41,7 @@ class Products(Resource):
         response = make_response(dict(data=response_list))
         response.content_type = "application/json; charset=utf-8"
         response.charset = "UTF-8"
-        response.content_language = "fa"
+        response.content_language = "fa-IR"
         return response
 
     def post(self):
@@ -53,6 +53,7 @@ class Products(Resource):
         price = info_data["price"]
         discount = info_data["discount"]
         off_price = info_data["off_price"]
+        filename.replace(" ", "")
         url = "https://api-coffee-flask.herokuapp.com/uploads/" + filename
 
         if name is None or description is None or price is None or discount is None or off_price is None:
