@@ -37,7 +37,8 @@ class VIndex(MethodView):
             })
 
         response = make_response(jsonify(response_list))
-        response.content_type = "application/json; charset=utf-8"
+        response.content_type = "application/json"
+        response.charset = "utf-8"
         return response
 
     def post(self):
