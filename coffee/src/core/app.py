@@ -10,8 +10,8 @@ class FlaskApp(Flask):
         return cls.__app
 
     def install_blueprints(self):
-        from coffee.src.products_api import products_bp
-        self.register_blueprint(products_bp)
-
         from coffee.src.uploads import uploads_bp
         self.register_blueprint(uploads_bp)
+
+    def install_all_api(self):
+        from coffee.src import products_api
