@@ -1,7 +1,7 @@
 import datetime
 import os
 
-from flask import request, jsonify, current_app
+from flask import request, jsonify, current_app, make_response
 from flask_restful import Resource
 
 from coffee.src.core.extensions import api
@@ -38,7 +38,9 @@ class Products(Resource):
                 "discount": single_data.discount,
                 "off_price": single_data.off_price
             })
-        return response_list
+        response = make_response(dict(data=response_list))
+        response.content_type = "application/json; charset=UTF-8"
+        return response
 
     def post(self):
         info_data = request.form
