@@ -42,7 +42,7 @@ class VIndex(MethodView):
         info_data = request.form
         image_file = request.files.get("image", None)
         filename = str(datetime.datetime.now()) + "-" + image_file.filename
-        name = "تست"
+        name = info_data["name"]
         description = info_data["description"]
         price = info_data["price"]
         discount = info_data["discount"]
