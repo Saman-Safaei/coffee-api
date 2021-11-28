@@ -46,7 +46,7 @@ class Products(Resource):
         return response
 
     def post(self):
-        info_data = request.form
+        info_data = request.get_json()
         image_file = request.files.get("image", None)
         filename = str(datetime.datetime.now().year) + str(datetime.datetime.now().month) + str(datetime.datetime.now().day) + str(datetime.datetime.now().hour) + str(datetime.datetime.now().minute) + str(datetime.datetime.now().second) + image_file.filename
         name = info_data["name"]
