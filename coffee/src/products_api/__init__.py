@@ -38,7 +38,7 @@ class Products(Resource):
                 "discount": single_data.discount,
                 "off_price": single_data.off_price
             })
-        response = make_response(jsonify(response_list))
+        response = make_response(dict(data=response_list))
         response.content_type = "application/json; charset=utf-8"
         response.headers["Access-Control-Allow-Origin"] = "*"
         return response
