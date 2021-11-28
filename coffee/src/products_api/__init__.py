@@ -24,6 +24,7 @@ class Products(Resource):
                     "image_url": data.image_url,
                     "description": data.description,
                     "price": data.price,
+                    "category": data.category,
                     "discount": data.discount,
                     "off_price": data.off_price
                 })
@@ -36,6 +37,7 @@ class Products(Resource):
                 "description": single_data.description,
                 "price": single_data.price,
                 "discount": single_data.discount,
+                "category": single_data.category,
                 "off_price": single_data.off_price
             })
         response = make_response(dict(data=response_list))
@@ -44,13 +46,14 @@ class Products(Resource):
         return response
 
     def post(self):
-        info_data = request.get_json()
+        info_data = request.form
         image_file = request.files.get("image", None)
         filename = str(datetime.datetime.now().year) + str(datetime.datetime.now().month) + str(datetime.datetime.now().day) + str(datetime.datetime.now().hour) + str(datetime.datetime.now().minute) + "-" + str(datetime.datetime.now().second)
         name = info_data["name"]
         description = info_data["description"]
         price = info_data["price"]
         discount = info_data["discount"]
+        category = info_data["category"]
         off_price = info_data["off_price"]
         url = "https://api-coffee-flask.herokuapp.com/uploads/" + filename
 
@@ -58,7 +61,7 @@ class Products(Resource):
             return {"massage": "Info is not complete !", "code": 4}
 
         product = models.MProducts(name=name, image_url=url, description=description, price=price, off_price=off_price,
-                                   discount=discount)
+                                   discount=discount, category=category)
         try:
             db.session.add(product)
             db.session.commit()

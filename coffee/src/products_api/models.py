@@ -11,6 +11,7 @@ class MProducts(db.Model):
     price = db.Column(db.INTEGER(), nullable=False)
     discount = db.Column(db.INTEGER(), nullable=False, default=False)
     off_price = db.Column(db.INTEGER(), nullable=False, default=0)
+    category = db.Column(db.VARCHAR(), nullable=False)
 
     def get_id(self):
         return self._id
