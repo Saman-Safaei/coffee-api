@@ -5,7 +5,10 @@ from . import config
 
 
 def create_app():
-    app = FlaskApp(__name__)
+    app = FlaskApp(
+        __name__,
+        template_folder=config.TEMPLATES_DIR
+    )
     app.config.from_pyfile(config.__file__)
 
     app.install_blueprints()

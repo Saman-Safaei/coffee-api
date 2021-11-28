@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home of API</title>
+</head>
+<body>
+    <h3 dir="ltr">/api/products</h3>
+    <div style="padding: 16px;">
+        <p>ریکوئست get چی میده ؟</p>
+        <pre dir="ltr" style="color: white;background-color: #191f21;border-radius: 8px;padding: 16px;">
+{
+    "data": [
+        {
+            "description": "دارای کافئین بالا . با طعمی ملایم",
+            "discount": 0,
+            "id": 1,
+            "image_url": "https://api-coffee-flask.herokuapp.com/uploads/20211128182-coffee1.jpeg",
+            "name": "قهوه اسپرسو",
+            "off_price": 0,
+            "category": "coffee",
+            "price": 20000
+        }
+    ]
+}
+        </pre>
+        <p>حالا اگه تک آیتم بخوای بعد url اینو میذاری :</p>
+        <p dir="ltr">?id=1</p>
+    </div>
+    <hr>
+    <div style="padding: 16px;">
+        <p>ریکوئست post چطوریه ؟</p>
+        <pre dir="ltr" style="color: white;background-color: #191f21;border-radius: 8px;padding: 16px;">
+{
+    "description": "دارای کافئین بالا . با طعمی ملایم",
+    "discount": 0,
+    "id": 1,
+    "image_url": "https://api-coffee-flask.herokuapp.com/uploads/20211128182-coffee1.jpeg",
+    "name": "قهوه اسپرسو",
+    "off_price": 0,
+    "category": "coffee",
+    "price": 20000
+}
+        </pre>
+        <p>اینو براش میفرستی . باید یه فایل هم بفرستی که همون فایل عکسه .اسمش مهم نیست ولی با عنوان image بفرستش</p>
+    </div>
+    <hr>
+    <div style="padding: 16px;">
+        <p>ریکوئست Delete چطور کار میکنه ؟</p>
+        <p>کافیه این json رو براش بفرستی تا یه اطلاعات رو دلیت کنه از دیتابیس</p>
+        <pre dir="ltr" style="color: white;background-color: #191f21;border-radius: 8px;padding: 16px;">
+{
+    "item_id": 2
+}
+        </pre>
+    </div>
+</body>
+</html>
