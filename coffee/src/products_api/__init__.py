@@ -40,8 +40,7 @@ class Products(Resource):
             })
         response = make_response(dict(data=response_list))
         response.content_type = "application/json; charset=utf-8"
-        response.charset = "UTF-8"
-        response.content_language = "fa-IR"
+        response.headers["Access-Control-Allow-Origin"] = "*"
         return response
 
     def post(self):
