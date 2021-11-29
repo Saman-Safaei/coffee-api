@@ -17,4 +17,4 @@ class FlaskApp(Flask):
         self.register_blueprint(uploads_bp)
 
     def install_all_api(self):
-        from coffee.src import products_api
+        from coffee.src import api_products
