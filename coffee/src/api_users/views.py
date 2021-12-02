@@ -68,7 +68,7 @@ class VRegister(View):
             jsonify(
                 dict(
                     user=dict(firstName=user.f_name, lastName=user.l_name,
-                              username=user.username,
+                              userName=user.username,
                               email=user.e_mail, phoneNumber=user.phone_number),
                     code=201)), 201
         )
@@ -83,7 +83,7 @@ class VLogin(View):
 
     def dispatch_request(self):
         data = request.get_json()
-        username = data.get("username")
+        username = data.get("userName")
         password = data.get("password")
 
         if not username or not password:
@@ -111,7 +111,7 @@ class VLogin(View):
         response = make_api_response(
             dict(
                 user=dict(
-                    username=user.username,
+                    userName=user.username,
                     email=user.e_mail,
                     firstName=user.f_name,
                     lastName=user.l_name,
