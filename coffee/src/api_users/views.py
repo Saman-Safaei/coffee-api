@@ -1,6 +1,5 @@
 from coffee.src.core import error_codes, error_massages as em
 from coffee.src.core.extensions import db
-from coffee.src.core.utilities import make_api_response
 
 from flask.views import View
 from flask import jsonify
@@ -24,10 +23,7 @@ class VRegister(View):
 
         # Check variables if are None
         if not f_name or not l_name or not username or not password or not e_mail or not phone_number:
-            response = make_api_response(
-                jsonify(dict(massage="Info is not complete", code=error_codes.data_incomplete))
-            )
-            return response
+            return jsonify(dict(massage="Info is not complete", code=error_codes.data_incomplete))
 
         # Check database variables
         exists_username = models.MUser.query.filter_by(username=username).first()
@@ -36,22 +32,13 @@ class VRegister(View):
 
         if exists_username:
             # Make and return response for username
-            response = make_api_response(
-                jsonify(dict(massage=em.username_already_exists, code=error_codes.username_already_exists)), 400
-            )
-            return response
+            return jsonify(dict(massage=em.username_already_exists, code=error_codes.username_already_exists)), 400
         if exists_email:
             # Make and return response for email
-            response = make_api_response(
-                jsonify(dict(massage=em.email_already_exists, code=error_codes.email_already_exists)), 400
-            )
-            return response
+            return jsonify(dict(massage=em.email_already_exists, code=error_codes.email_already_exists)), 400
         if exists_phone:
             # Make and return response for phone number
-            response = make_api_response(
-                jsonify(dict(massage=em.phone_already_exists, code=error_codes.phone_already_exists)), 400
-            )
-            return response
+            return jsonify(dict(massage=em.phone_already_exists, code=error_codes.phone_already_exists)), 400
 
         # create and commit user
         user = models.MUser(f_name, l_name, username, password, phone_number, e_mail)
@@ -61,21 +48,15 @@ class VRegister(View):
             db.session.commit()
         except Exception as e:
             # Make and return response
-            response = make_api_response(
-                jsonify(dict(massage=em.an_error_occurred + str(e), code=error_codes.an_error_occurred)), 503
-            )
-            return response
+            return jsonify(dict(massage=em.an_error_occurred + str(e), code=error_codes.an_error_occurred)), 503
 
         # Make and return response
-        response = make_api_response(
-            jsonify(
+        return jsonify(
                 dict(
                     user=dict(firstName=user.f_name, lastName=user.l_name,
                               userName=user.username,
                               email=user.e_mail, phoneNumber=user.phone_number),
                     code=201)), 201
-        )
-        return response
 
 
 # ----------------------------------------------------------------------------------------------------------------------
@@ -90,35 +71,23 @@ class VLogin(View):
         password = data.get("password")
 
         if not username or not password:
-            response = make_api_response(
-                jsonify(dict(massage=em.data_incomplete, code=error_codes.data_incomplete))
-            )
-            return response
+            return jsonify(dict(massage=em.data_incomplete, code=error_codes.data_incomplete))
 
         user = models.MUser.query.filter_by(username=username).first()
 
         if not user:
-            response = make_api_response(
-                jsonify(dict(massage=em.user_not_found, code=error_codes.user_not_found))
-            )
-            return response
+            return jsonify(dict(massage=em.user_not_found, code=error_codes.user_not_found))
 
         user_password = user.password
 
         if user_password != password:
-            response = make_api_response(
-                jsonify(dict(massage=em.wrong_password, code=error_codes.wrong_password))
-            )
-            return response
+            return jsonify(dict(massage=em.wrong_password, code=error_codes.wrong_password))
 
-        response = make_api_response(
-            dict(
+        return jsonify(dict(
                 user=dict(
                     userName=user.username,
                     email=user.e_mail,
                     firstName=user.f_name,
                     lastName=user.l_name,
                     phoneNumber=user.phone_number
-                ), code=200)
-        )
-        return response
+                ), code=200))

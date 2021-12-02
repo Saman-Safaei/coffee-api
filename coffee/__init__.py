@@ -1,6 +1,7 @@
 from coffee.src.core import FlaskApp
 from coffee.src.core.extensions import db
 from coffee.src.core.extensions import api
+from coffee.src.core.extensions import cors
 from . import config
 
 
@@ -17,5 +18,6 @@ def create_app():
 
     db.init_app(app)
     api.init_app(app)
+    cors.init_app(app)
 
     return app
