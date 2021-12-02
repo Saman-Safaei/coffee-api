@@ -11,5 +11,5 @@ def get_percent(num, percent):
 def make_api_response(data, *args):
     response = make_response(data, *args)
     response.content_type = "application/json; charset=utf-8"
-    response.headers["Access-Control-Allow-Origin"] = "*"
+    response.headers.add("Access-Control-Allow-Origin", "*")
     return response
