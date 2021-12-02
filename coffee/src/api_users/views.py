@@ -34,19 +34,19 @@ class VRegister(View):
         if exists_username:
             # Make and return response for username
             response = make_api_response(
-                jsonify(dict(massage=em.username_already_exists, code=error_codes.username_already_exists))
+                jsonify(dict(massage=em.username_already_exists, code=error_codes.username_already_exists)), 400
             )
             return response
         if exists_email:
             # Make and return response for email
             response = make_api_response(
-                jsonify(dict(massage=em.email_already_exists, code=error_codes.email_already_exists))
+                jsonify(dict(massage=em.email_already_exists, code=error_codes.email_already_exists)), 400
             )
             return response
         if exists_phone:
             # Make and return response for phone number
             response = make_api_response(
-                jsonify(dict(massage=em.phone_already_exists, code=error_codes.phone_already_exists))
+                jsonify(dict(massage=em.phone_already_exists, code=error_codes.phone_already_exists)), 400
             )
             return response
 
