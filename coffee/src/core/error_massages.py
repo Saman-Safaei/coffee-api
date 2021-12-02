@@ -1,0 +1,5 @@
+data_incomplete = "اطلاعات فرستاده شده در جیسون ناقص است"
+username_already_exists = "نام کاربری قبلا استفاده شده است"
+email_already_exists = "ایمیل قبلا وارد شده است"
+phone_already_exists = "شماره تلفن قبلا وارد شده است"
+an_error_occurred = "-- خطای نامشخصی رخ داده است --"

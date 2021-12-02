@@ -1,4 +1,4 @@
-from coffee.src.core import error_codes
+from coffee.src.core import error_codes, error_massages as em
 from coffee.src.core.extensions import db
 from coffee.src.core.utilities import make_api_response
 
@@ -32,21 +32,21 @@ class VRegister(View):
         exists_phone = models.MUser.query.filter_by(phone_number=phone_number).first()
 
         if exists_username:
-            # Make and return response
+            # Make and return response for username
             response = make_api_response(
-                jsonify(dict(massage="This username already exists", code=error_codes.username_already_exists))
+                jsonify(dict(massage=em.username_already_exists, code=error_codes.username_already_exists))
             )
             return response
         if exists_email:
-            # Make and return response
+            # Make and return response for email
             response = make_api_response(
-                jsonify(dict(massage="This email already exists", code=error_codes.email_already_exists))
+                jsonify(dict(massage=em.email_already_exists, code=error_codes.email_already_exists))
             )
             return response
         if exists_phone:
-            # Make and return response
+            # Make and return response for phone number
             response = make_api_response(
-                jsonify(dict(massage="This phone number already exists", code=error_codes.phone_already_exists))
+                jsonify(dict(massage=em.phone_already_exists, code=error_codes.phone_already_exists))
             )
             return response
 
@@ -59,7 +59,7 @@ class VRegister(View):
         except Exception as e:
             # Make and return response
             response = make_api_response(
-                jsonify(dict(massage="User Not Created, Error: " + str(e), code=error_codes.an_error_occurred)), 503
+                jsonify(dict(massage=em.an_error_occurred + str(e), code=error_codes.an_error_occurred)), 503
             )
             return response
 
