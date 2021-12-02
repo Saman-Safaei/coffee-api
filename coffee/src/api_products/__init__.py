@@ -52,6 +52,7 @@ class Products(Resource):
         filename = str(datetime.datetime.now().year) + str(datetime.datetime.now().month) + str(
             datetime.datetime.now().day) + str(datetime.datetime.now().hour) + str(
             datetime.datetime.now().minute) + str(datetime.datetime.now().second) + image_file.filename
+        filename.replace(" ", "")
         name = info_data["name"]
         description = info_data["description"]
         price = info_data["price"]

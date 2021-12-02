@@ -3,3 +3,5 @@ username_already_exists = "نام کاربری قبلا استفاده شده ا
 email_already_exists = "ایمیل قبلا وارد شده است"
 phone_already_exists = "شماره تلفن قبلا وارد شده است"
 an_error_occurred = "-- خطای نامشخصی رخ داده است --"
+user_not_found = "کاربری با این نام کاربری وجود ندارد"
+wrong_password = "رمز عبور اشتباه است"

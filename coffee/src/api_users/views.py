@@ -83,4 +83,33 @@ class VLogin(View):
 
     def dispatch_request(self):
         data = request.get_json()
+        username = data.get("username")
+        password = data.get("password")
 
+        user = models.MUser.query.filter_by(username=username).first()
+
+        if not user:
+            response = make_api_response(
+                jsonify(dict(massage=em.user_not_found, code=error_codes.user_not_found))
+            )
+            return response
+
+        user_password = user.password
+
+        if user_password != password:
+            response = make_api_response(
+                jsonify(dict(massage=em.wrong_password, code=error_codes.wrong_password))
+            )
+            return response
+
+        response = make_api_response(
+            dict(
+                user=dict(
+                    username=user.username,
+                    email=user.e_mail,
+                    firstName=user.f_name,
+                    lastName=user.l_name,
+                    phoneNumber=user.phone_number
+                ), code=200)
+        )
+        return response
