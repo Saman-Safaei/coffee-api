@@ -24,7 +24,10 @@ class VRegister(View):
 
         # Check variables if are None
         if not f_name or not l_name or not username or not password or not e_mail or not phone_number:
-            return jsonify(dict(massage="Info is not complete", code=error_codes.data_incomplete))
+            response = make_api_response(
+                jsonify(dict(massage="Info is not complete", code=error_codes.data_incomplete))
+            )
+            return response
 
         # Check database variables
         exists_username = models.MUser.query.filter_by(username=username).first()
