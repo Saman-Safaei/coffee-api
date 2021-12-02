@@ -5,4 +5,4 @@ from flask_cors import CORS
 
 db = SQLAlchemy()
 api = Api(prefix="/api/")
-cors = CORS()
+cors = CORS(resources={r"/api/*": {"origins": "*"}})
