@@ -86,6 +86,12 @@ class VLogin(View):
         username = data.get("username")
         password = data.get("password")
 
+        if not username or not password:
+            response = make_api_response(
+                jsonify(dict(massage=em.data_incomplete, code=error_codes.data_incomplete))
+            )
+            return response
+
         user = models.MUser.query.filter_by(username=username).first()
 
         if not user:
