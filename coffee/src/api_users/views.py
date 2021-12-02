@@ -15,12 +15,12 @@ class VRegister(View):
     def dispatch_request(self):
         # Get Data From Request
         data = request.get_json()
-        f_name = data["firstName"]
-        l_name = data["lastName"]
-        username = data["userName"]
-        password = data["password"]
-        e_mail = data["email"]
-        phone_number = data["phoneNumber"]
+        f_name = data.get("firstName")
+        l_name = data.get("lastName")
+        username = data.get("userName")
+        password = data.get("password")
+        e_mail = data.get("email")
+        phone_number = data.get("phoneNumber")
 
         # Check variables if are None
         if not f_name or not l_name or not username or not password or not e_mail or not phone_number:
@@ -73,3 +73,14 @@ class VRegister(View):
                     code=201)), 201
         )
         return response
+
+
+# ----------------------------------------------------------------------------------------------------------------------
+
+
+class VLogin(View):
+    methods = ["POST"]
+
+    def dispatch_request(self):
+        data = request.get_json()
+
