@@ -18,3 +18,13 @@ class FlaskApp(Flask):
 
     def install_all_api(self):
         from coffee.src import api_products
+
+        from coffee.src.api_users import users_bp
+        self.register_blueprint(users_bp)
+
+    def init_database(self):
+        from . import database_initializer
+
+    @classmethod
+    def get_app(cls) -> Flask:
+        return cls.__app

@@ -13,6 +13,7 @@ def create_app():
 
     app.install_blueprints()
     app.install_all_api()
+    app.init_database()
 
     db.init_app(app)
     api.init_app(app)
