@@ -15,16 +15,16 @@ class VRegister(View):
     def dispatch_request(self):
         # Get Data From Request
         data = request.get_json()
-        f_name = data.get("firstName")
-        l_name = data.get("lastName")
-        username = data.get("userName")
-        password = data.get("password")
-        e_mail = data.get("email")
-        phone_number = data.get("phoneNumber")
+        f_name = data["firstName"]
+        l_name = data["lastName"]
+        username = data["userName"]
+        password = data["password"]
+        e_mail = data["email"]
+        phone_number = data["phoneNumber"]
 
         # Check variables if are None
         if not f_name or not l_name or not username or not password or not e_mail or not phone_number:
-            return jsonify(dict(massage="Info is not complete"), code=error_codes.data_incomplete)
+            return jsonify(dict(massage="Info is not complete", code=error_codes.data_incomplete))
 
         # Check database variables
         exists_username = models.MUser.query.filter_by(username=username).first()
