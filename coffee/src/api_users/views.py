@@ -23,7 +23,7 @@ class VRegister(View):
 
         # Check variables if are None
         if not f_name or not l_name or not username or not password or not e_mail or not phone_number:
-            return jsonify(dict(massage="Info is not complete", code=error_codes.data_incomplete))
+            return jsonify(dict(massage="Info is not complete", code=error_codes.data_incomplete)), 400
 
         # Check database variables
         exists_username = models.MUser.query.filter_by(username=username).first()
@@ -71,17 +71,17 @@ class VLogin(View):
         password = data.get("password")
 
         if not username or not password:
-            return jsonify(dict(massage=em.data_incomplete, code=error_codes.data_incomplete))
+            return jsonify(dict(massage=em.data_incomplete, code=error_codes.data_incomplete)), 400
 
         user = models.MUser.query.filter_by(username=username).first()
 
         if not user:
-            return jsonify(dict(massage=em.user_not_found, code=error_codes.user_not_found))
+            return jsonify(dict(massage=em.user_not_found, code=error_codes.user_not_found)), 400
 
         user_password = user.password
 
         if user_password != password:
-            return jsonify(dict(massage=em.wrong_password, code=error_codes.wrong_password))
+            return jsonify(dict(massage=em.wrong_password, code=error_codes.wrong_password)), 400
 
         return jsonify(dict(
                 user=dict(
