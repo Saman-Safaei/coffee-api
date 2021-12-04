@@ -31,7 +31,7 @@ class Products(Resource):
                 })
         else:
             single_data = models.MProducts.query.filter_by(_id=product_id).first_or_404()
-            response_list.append({
+            response = make_response({
                 "id": single_data.get_id(),
                 "name": single_data.name,
                 "image_url": single_data.image_url,
@@ -41,9 +41,10 @@ class Products(Resource):
                 "category": single_data.category,
                 "off_price": single_data.off_price
             })
+            response.content_type = "application/json; charset=utf-8"
+            return response
         response = make_response(dict(data=response_list))
         response.content_type = "application/json; charset=utf-8"
-        response.headers["Access-Control-Allow-Origin"] = "*"
         return response
 
     def post(self):
